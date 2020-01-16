@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/App.css';
 // import components
 
-class Timer extends Component {
+class Mid extends Component {
 
   render() {
     return (
@@ -11,4 +11,4 @@ class Timer extends Component {
   }
 }
 
-export default Timer;
+export default Mid;

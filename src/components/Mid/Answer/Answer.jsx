@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/App.css';
+import './Answer.css';
 // import components
 
 class Answer extends Component {
