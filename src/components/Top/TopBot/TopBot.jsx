@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import '../css/App.css';
-// import components
+import Question from './Question.jsx';
+
 
 class Top extends Component {
 
   render() {
     return (
-      <div></div>
+      <div className="TopBot">
+          <Question />
+      </div>
     );
   }
 }

@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
-import '../css/App.css';
+// import '../css/App.css';
 // import components
+import Answer from './Answer/Answer.jsx';
 
 class Mid extends Component {
+  constructor(props){
+    super(props);
+  }
+
+  responded(no){
+    console.log(`${no} has called!`);
+    this.props.answerOnClick(no);
+  }
+
 
   render() {
+    let cmps =[];
+    for (let i = 0;i<4;i++){
+      cmps.push(<Answer no={i} respond={(no) => this.responded(no)}/>);
+    }
+
     return (
-      <div></div>
+      <div className="Mid container">
+        {cmps};
+      </div>
     );
   }
 }

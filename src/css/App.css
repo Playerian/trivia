@@ -7,4 +7,43 @@ body {
   text-align: center;
 }
 
+.container{
+  border: solid 1px limegreen;
+  width: 100vw;
+}
 
+.Bottom{
+  height: 10vh;
+}
+
+.Mid{
+  height: 45vh;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.Top{
+  height: 45vh;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.Answer{
+  width : 45%;
+  border: solid 1px black;
+  height: 15vh;
+  margin: auto;
+}
+
+.Question{
+  width: 70vw;
+  border: solid 1px black;
+  height: 15vh;
+  margin:auto;
+}
+
+.QuestionNo{
+  border: solid 1px black;
+}

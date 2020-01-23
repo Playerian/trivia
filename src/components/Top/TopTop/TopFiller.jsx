@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 // import components
 
-class Bottom extends Component {
+class TopFiller extends Component {
 
   render() {
     return (
-      <div className="Bottom container">
-
+      <div className="TopFiller">
       </div>
     );
   }
 }
 
-export default Bottom;
+export default TopFiller;

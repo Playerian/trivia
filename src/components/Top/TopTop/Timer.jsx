@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import '../css/App.css';
 // import components
 
 class Timer extends Component {
 
   render() {
     return (
-      <div></div>
+      <div className="Timer">
+          <img src="/src/logo.svg"/>
+      </div>
     );
   }
 }

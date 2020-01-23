@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import '../css/App.css';
-import './Answer.css';
 // import components
 
 class Answer extends Component {
 
+  handleClick(){
+    this.props.respond(this.props.no);
+  }
+
   render() {
     return (
-      <div className="Answer">
+      <div className="Answer" onClick={() => this.handleClick()}>
         
         
       </div>
@@ -15,4 +17,4 @@ class Answer extends Component {
   }
 }
 
-export default Answer;import React, { Component } from 'react';
+export default Answer;

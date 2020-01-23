@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import '../css/App.css';
+// import '../css/App.css';
 // import components
 
 class QuestionNo extends Component {
 
   render() {
     return (
-      <div></div>
+      <div className="QuestionNo">
+        1
+      </div>
     );
   }
 }
