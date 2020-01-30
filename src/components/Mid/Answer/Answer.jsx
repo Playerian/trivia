@@ -10,7 +10,7 @@ class Answer extends Component {
   render() {
     return (
       <div className="Answer" onClick={() => this.handleClick()}>
-        
+        {this.props.data}
         
       </div>
     );

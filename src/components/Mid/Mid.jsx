@@ -17,7 +17,7 @@ class Mid extends Component {
   render() {
     let cmps =[];
     for (let i = 0;i<4;i++){
-      cmps.push(<Answer no={i} respond={(no) => this.responded(no)}/>);
+      cmps.push(<Answer no={i} data={this.props.textData[i]} respond={(no) => this.responded(no)}/>);
     }
 
     return (

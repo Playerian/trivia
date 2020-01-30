@@ -7,7 +7,7 @@ class Top extends Component {
   render() {
     return (
       <div className="TopBot">
-          <Question />
+          <Question data={this.props.questionText}/>
       </div>
     );
   }

@@ -14,6 +14,7 @@ body {
 
 .Bottom{
   height: 10vh;
+  background-color: chocolate;
 }
 
 .Mid{
@@ -21,6 +22,7 @@ body {
   display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  background-color: orchid;
 }
 
 .Top{
@@ -35,15 +37,56 @@ body {
   border: solid 1px black;
   height: 15vh;
   margin: auto;
+  font-size:3vw;
+  overflow:scroll;
+  background-color: khaki;
+
 }
 
 .Question{
-  width: 70vw;
+  width: 80vw;
   border: solid 1px black;
-  height: 15vh;
+  height: 75%;
   margin:auto;
+  font-size: 5vw;
+  overflow:scroll;
 }
 
 .QuestionNo{
   border: solid 1px black;
+}
+
+.TopTop{
+  width:100%;
+  height:25%;
+  box-sizing: border-box;
+  display:flex;
+  /* flex-wrap:wrap; */
+}
+
+.TopBot{
+  width:100%;
+  height:75%;
+  box-sizing: border-box;
+  display:flex;
+  background-color:aqua;
+
+}
+
+.TopFiller{
+  width:70vw;
+  height:100%;
+  background-color:lightgoldenrodyellow ;
+}
+
+.QuestionNo{
+ width:20vw;
+  background:red;
+  font-size: 5vw;
+  font-weight: bold;
+
+}
+
+.Timer {
+  width: 10vw;
 }

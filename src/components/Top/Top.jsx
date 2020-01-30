@@ -9,7 +9,7 @@ class Top extends Component {
     return (
       <div className="Top container">
         <TopTop/>
-        <TopBot/>
+        <TopBot questionText={this.props.questionText}/>
       </div>
     );
   }
