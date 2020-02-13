@@ -20,27 +20,35 @@ class App extends Component {
     var database = buildFirebase();
     var databaseRef = database.ref("/questions");
     databaseRef.once("value").then(function(data) {
+    console.log(data);
     const questions = data.val();
     // Do something with the questions
       console.log(questions)
       document.setState({fetched: true});
-      for (let i = 0; i < questions.length;i++ ){
+      //query questions into objects
+      let qList = [];
+      for (let key in questions){
         let qClass = new Question(
-          questions[i].question_text,
-          questions[i].choices,
-          questions[i].correct_choice_index
+          questions[key].question_text,
+          questions[key].choices,
+          questions[key].correct_choice_index
         );
-        document.state.QuestionList.push(qClass);
-        document.iterateQuestion();
-        document.changeRenderText();
+        //document.state.QuestionList.push(qClass);
+        qList.push(qClass);
+        
       }
+      console.log("consoling qList");
+      console.log(qList)
+      document.setState({QuestionList: qList}, () => {
+        document.iterateQuestion();
+      });
     });
 
 
     //set state
     this.state = {
       //variables
-      currentIndex: -1,
+      currentIndex: 0,
       currentQ: {},
       QuestionList: [],
       fetched: false,
@@ -52,19 +60,35 @@ class App extends Component {
   renderQuestion(){
     let q = this.state.QuestionList[this.state.currentIndex]
     if (q){
-      this.state.questionText = q.getQuestion();
-      this.state.answerBoxText = q.getAnswer();
-      this.state.currentQ = q;
+      // this.state.questionText = q.getQuestion();
+      this.setState({questionText: q.getQuestion()});
+      // this.state.answerBoxText = q.getAnswer();
+      this.setState({answerBoxText: q.getAnswer()});
+      // this.state.currentQ = q;
+      this.setState({currentQ: q});
     }
   }
   //functions
   answerOnClick(no){
     console.log(`app has recieveed ${no}`)
-    
+    //this.iterateQuestion()
+    let question = this.state.currentQ;
+    console.log("[][][][][][]")
+    console.log(question);
+
+    if(question.answerIndex === no){
+      this.iterateQuestion()
+    }
+
   }
   changeRenderText(){
-    this.state.answerBoxText = this.state.QuestionList[this.state.currentIndex].question;
-    this.state.answerBoxText = this.state.QuestionList[this.state.currentIndex].answerChoice;
+    //this.state.answerBoxText = this.state.QuestionList[this.state.currentIndex].question;
+    //this.state.answerBoxText = this.state.QuestionList[this.state.currentIndex].answerChoice;
+    // console.log("wwwwwwwwww")
+    // console.log(this.state.QuestionList)
+    // console.log(this.state.currentIndex)
+    this.setState({questionText : this.state.QuestionList[this.state.currentIndex].question});
+    this.setState({answerBoxText : this.state.QuestionList[this.state.currentIndex].answerChoice})
   }
   iterateQuestion(){
     let index = this.state.currentIndex;
@@ -73,15 +97,18 @@ class App extends Component {
       index = 0;
     }
     this.setState({currentIndex: index});
+    this.setState({currentQ: this.state.QuestionList[this.state.currentIndex]})
     console.log(index);
+    this.changeRenderText();
   }
   
   render() {
+    console.log(this.state);
     if (this.state.currentIndex === -1){
       return (
         <div className="app">
           <Top questionText={this.state.questionText}/>
-          <Mid answerOnClick={this.answerOnClick}  textData={this.state.answerBoxText}/>
+          <Mid answerOnClick={() => this.answerOnClick}  textData={this.state.answerBoxText}/>
           <Bottom />
         </div>
       );
@@ -89,7 +116,7 @@ class App extends Component {
       return (
         <div className="app">
           <Top questionText={this.state.questionText}/>
-          <Mid answerOnClick={this.answerOnClick}  textData={this.state.answerBoxText}/>
+          <Mid answerOnClick={(no) => this.answerOnClick(no)}  textData={this.state.answerBoxText}/>
           <Bottom />
         </div>
       );
@@ -103,8 +130,8 @@ export default App;
 //other class?
 class Question {
   constructor(question, answerChoice, answerIndex){
-    this.question = Array.isArray(question) ? question : [];
-    this.answerChoice = Array.isArray(answerChoice) ? answerChoice : [];
+    this.question = typeof question === "string" ? question : "question is not string" ; //Array.isArray(question) ? question : [];
+    this.answerChoice = Array.isArray(answerChoice) ? answerChoice : ["undefined", "undefined", "undefined", "undefined"];
     this.answerIndex = typeof answerIndex === 'number' ? answerIndex : NaN;
   }    
   getAnswer(){
