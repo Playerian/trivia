@@ -9,7 +9,7 @@ class Top extends Component {
   render() {
     return (
       <div className="TopTop">
-        <QuestionNo/>
+        <QuestionNo qNum={this.props.qNum}/>
         <TopFiller/>
         <Timer/>
       </div>

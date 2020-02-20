@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props){
     super(props);
     let document = this;
-    //get question fom fie base
+    //get question fom fire base
     var database = buildFirebase();
     var databaseRef = database.ref("/questions");
     databaseRef.once("value").then(function(data) {
@@ -26,19 +26,41 @@ class App extends Component {
       console.log(questions)
       document.setState({fetched: true});
       //query questions into objects
-      let qList = [];
+      let newList = [];
       for (let key in questions){
         let qClass = new Question(
           questions[key].question_text,
           questions[key].choices,
           questions[key].correct_choice_index
         );
+        //shuffle answer choices and index
+        let correctChoice = qClass.answerChoice[qClass.answerIndex];
+        let oldList = qClass.answerChoice;
+        let nList = [];
+        while(oldList.length > 0){
+          //shuffle choices
+          let index = document.randomInt(0, oldList.length - 1);
+          let removingObj = oldList[index];
+          oldList.splice(index, 1);
+          nList.push(removingObj);
+        }
+        qClass.answerChoice = nList;
+        qClass.correct_choice_index = qClass.answerChoice.indexOf(correctChoice);
         //document.state.QuestionList.push(qClass);
-        qList.push(qClass);
+        newList.push(qClass);
         
+      }
+      //shuffle qList
+      let qList = [];
+      while (newList.length > 0){
+        let index = document.randomInt(0, newList.length - 1);
+        let removingObj = newList[index];
+        newList.splice(index, 1);
+        qList.push(removingObj);
       }
       console.log("consoling qList");
       console.log(qList)
+      document.setState({totalQ: qList.length});
       document.setState({QuestionList: qList}, () => {
         document.iterateQuestion();
       });
@@ -50,13 +72,20 @@ class App extends Component {
       //variables
       currentIndex: 0,
       currentQ: {},
+      totalQ: 0,
       QuestionList: [],
       fetched: false,
+      userWrongAnswer: false,
       //rendering
       answerBoxText: ["Empty", "Empty", "Empty2", "Empty"], //<-change to change answer.text
       questionText: "methink drown bliindsaddaw dumb, no more drowning you hear me. im changed. put money in thy purse. I am not who I am??????????????????????? PROSANA (._.)7/"
     };
   }
+  //misc fun
+  randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
+  //real method
   renderQuestion(){
     let q = this.state.QuestionList[this.state.currentIndex]
     if (q){
@@ -77,7 +106,13 @@ class App extends Component {
     console.log(question);
 
     if(question.answerIndex === no){
-      this.iterateQuestion()
+      //if answer correct----------------------
+
+
+      //this.iterateQuestion()
+
+    }else{
+      this.setState({userWrongAnswer:true})
     }
 
   }
@@ -101,29 +136,18 @@ class App extends Component {
     console.log(index);
     this.changeRenderText();
   }
-  
+
   render() {
     console.log(this.state);
-    if (this.state.currentIndex === -1){
-      return (
-        <div className="app">
-          <Top questionText={this.state.questionText}/>
-          <Mid answerOnClick={() => this.answerOnClick}  textData={this.state.answerBoxText}/>
-          <Bottom />
-        </div>
-      );
-    }else{
-      return (
-        <div className="app">
-          <Top questionText={this.state.questionText}/>
-          <Mid answerOnClick={(no) => this.answerOnClick(no)}  textData={this.state.answerBoxText}/>
-          <Bottom />
-        </div>
-      );
-    }
+    return (
+      <div className="app"> 
+        <Top qNum={this.state.currentIndex} questionText={this.state.questionText}/>
+        <Mid answerOnClick={(no) => this.answerOnClick(no)}  textData={this.state.answerBoxText} isWrong={this.state.userWrongAnswer} correctAnswer={this.state.currentQ.getAnswer()}/>
+        <Bottom/>
+      </div>
+    );
   }
 }
-  
 
 export default App;
 
@@ -138,7 +162,7 @@ class Question {
     return this.answer ? this.answer : null;
   }
   checkAnswer(choice){
-    return this.answerChoice === choice;
+    return this.answerChoice[this.answerIndex] || null;
   }
   getQuestion(){
     return this.question ? this.question : null

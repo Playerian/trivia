@@ -8,7 +8,7 @@ class Top extends Component {
   render() {
     return (
       <div className="Top container">
-        <TopTop/>
+        <TopTop qNum={this.props.qNum}/>
         <TopBot questionText={this.props.questionText}/>
       </div>
     );
