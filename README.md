@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Trivia App Starter Code!
 
-## Available Scripts
+## Project Description
 
-In the project directory, you can run:
+In this unit, coders will work in groups to build a project using HTML, CSS, REACT, and Firebase. Their task is to build out the front-end for a Kahoot style question game that displays a question and the possible answers, allows a user to choose answer and determine whether they are right or wrong. This project is intended to highlight some important aspects of goal setting and project management. The project will culminate in a final presentation.
 
-### `npm start`
+====
+### Day 1: Project Setup and Introduction to Visual Studio Ocde
+Goal: Set up your project,  view the live running app, and build a simple component.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [ ] Use your [Outline and Planning Doc](https://docs.google.com/document/d/1oiyYdTcO2RxbE-2yq5KmeZpthExzHCNrgrVGtT47yOg/edit) to plan your project.
+- [ ] Go to the repository at https://github.com/itscodenation/trivia
+- [ ] Fork the repository to your github account and clone to a new workspace
+- [ ] Add, commit, and push your changes
+- [ ] To set up your app, in your terminal type `npm install`
+- [ ] To run your app, in your terminal type `npm start` this runs the app in the development mode. Then open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [ ] Use any remaining time to begin working on your project.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+====
+### Day 2: Use classes to represent data models
+Goal: Set up your your components
+- [ ] Create the question class to store the data from the sample objects
+- [ ] Style components in any way you choose.
 
-### `npm test`
+### Day 3: Use multiple components to create a complex layout
+- [ ] Use the sample data to display a question and its answer options by creating components and using props
+- [ ] Make the answers clickable
+- [ ] Use your remaining time to style your project
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Day 4: Read complex data from firebase
+- [ ] Replace sample data with firebase data to display the questions in your components
 
-### `npm run build`
+### Day 5: Use unidirectional data flow to pass down state
+- [ ] Set the initial state of your app component
+- [ ] Use props to pass state to your child components
+- [ ] Update App state from your child components to show which answer is correct
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Day 6: Project work day
+- [ ] Finish your project
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Day 7: Project work day
+- [ ] Finish your project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Day 8: Presentation Preperation Day
+- [ ] Using the [Presentaion Guidelines](https://docs.google.com/document/d/1ot54zTTJo7m7dMaN-yTZH6Y-kymEyNSJ4jLzNwLuskg/edit) and [Pitch Rubric](https://docs.google.com/document/d/1an_aanEdOoYftxjqcGB-0IxkW2BVGY5sH5SlJv9weBU/edit) 
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Extensions!
+- [ ] Make a timer that resets the game when the timer runs out
+- [ ] Make a counter that keeps track of how many times you've guessed the correct answer
+- [ ] Change the color of the answer buttons when the user guesses. For example turn the button with the correct answer to green.
+- [ ] Make it a two player game
+- [ ] Anything else you want!
