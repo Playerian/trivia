@@ -8,13 +8,13 @@ body {
 }
 
 .container{
-  border: solid 1px limegreen;
+  /* border: solid 1px limegreen; */
   width: 100vw;
 }
 
 .Bottom{
   height: 10vh;
-  background-color: chocolate;
+  background-image: linear-gradient(#20c750, 75%, #bd7d1e);
 }
 
 .Mid{
@@ -22,7 +22,9 @@ body {
   display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: orchid;
+  /* background-color: #20c750; */
+  background-image: linear-gradient(#17D3FF, 60%, #20c750);
+
 }
 
 .Top{
@@ -39,13 +41,13 @@ body {
   margin: auto;
   font-size:3vw;
   overflow:scroll;
-  background-color: khaki;
-
+  background-color: #FEE975;
+  transition: 0.5s;
 }
 
 .Question{
   width: 80vw;
-  border: solid 1px black;
+  /* border: solid 1px black; */
   height: 75%;
   margin:auto;
   font-size: 5vw;
@@ -53,7 +55,7 @@ body {
 }
 
 .QuestionNo{
-  border: solid 1px black;
+  /* border: solid 1px black; */
 }
 
 .TopTop{
@@ -62,6 +64,8 @@ body {
   box-sizing: border-box;
   display:flex;
   /* flex-wrap:wrap; */
+  background-image: linear-gradient(#000000, 10% , #0080FF);
+
 }
 
 .TopBot{
@@ -69,24 +73,78 @@ body {
   height:75%;
   box-sizing: border-box;
   display:flex;
-  background-color:aqua;
+  /* background-color:#17D3FF; */
+  background-image: linear-gradient(#0080FF,10%, #17D3FF);
+  text-shadow: 5px 5px 10px #000000;
+
 
 }
 
 .TopFiller{
   width:70vw;
   height:100%;
-  background-color:lightgoldenrodyellow ;
+  /* background-color:lightgoldenrodyellow ; */
+
 }
 
 .QuestionNo{
  width:20vw;
-  background:red;
+  /* background:#0080FF; */
+  color:#17D3FF;
   font-size: 5vw;
   font-weight: bold;
-
+  display: flex;
+  margin: auto;
+  justify-content: center;
 }
 
 .Timer {
   width: 10vw;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  color:#17D3FF;
+
+}
+
+.timerNum{
+  font-size: 5vw;
+}
+
+.answerButton1:hover{
+  background-color: #E4A4EE;
+}
+
+.answerButton2:hover{
+  background-color: #E4A4EE;
+}
+
+.answerButton3:hover{
+  background-color: #E4A4EE;
+}
+
+.answerButton0:hover{
+  background-color: #E4A4EE;
+}
+
+.incorrectTitle{
+  font-size: 10vh;
+}
+
+.incorrectbot{
+  font-size: 5vh;
+  text-shadow: 2px 2px 20px #00FFCC;
+
+}
+
+.incorrectTop{
+  font-size: 10vh;
+  height: 20vh;
+  overflow: scroll;
+
+}
+
+@keyframes ansButtonColorChange{
+  from{}
+  to{}
 }

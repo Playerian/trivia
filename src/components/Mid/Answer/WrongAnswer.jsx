@@ -7,12 +7,17 @@ class WrongAnswer extends Component {
     super(props);
   }
 
+nextQuestion(){
+  this.props.nextClicked();
+}
+
+  
   render() {
-    
     return (
       <div className="incorrectContainer">
-        <div className="incorrectTop">the correct answer is: {this.props}</div>
-        <div className="incorrectbot">click here for next question.</div>
+        <div className="incorrectTitle">Sorry, the answer you picked is wrong</div>
+        <div className="incorrectTop">the correct answer is: {this.props.actualAnswer}</div>
+        <div className="incorrectbot" onClick={()=>this.nextQuestion()}>click here for next question.</div>
       </div>
     );
   }

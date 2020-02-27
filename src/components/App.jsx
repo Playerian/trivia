@@ -20,10 +20,8 @@ class App extends Component {
     var database = buildFirebase();
     var databaseRef = database.ref("/questions");
     databaseRef.once("value").then(function(data) {
-    console.log(data);
     const questions = data.val();
     // Do something with the questions
-      console.log(questions)
       document.setState({fetched: true});
       //query questions into objects
       let newList = [];
@@ -59,8 +57,6 @@ class App extends Component {
         newList.splice(index, 1);
         qList.push(removingObj);
       }
-      console.log("consoling qList");
-      console.log(qList)
       document.setState({totalQ: qList.length});
       document.setState({QuestionList: qList}, () => {
         document.iterateQuestion();
@@ -77,6 +73,18 @@ class App extends Component {
       QuestionList: [],
       fetched: false,
       userWrongAnswer: false,
+      timeLength: 15,
+      time: 15,
+      timer: setInterval(()=>{
+        if (this.state.userWrongAnswer === false){
+          let time = this.state.time - 1;
+          if (time <= 0){
+            this.setState({time: time, userWrongAnswer: true});
+          }else{
+            this.setState({time: time});
+          }
+        }
+      }, 1000),
       //rendering
       answerBoxText: ["Empty", "Empty", "Empty2", "Empty"], //<-change to change answer.text
       questionText: "methink drown bliindsaddaw dumb, no more drowning you hear me. im changed. put money in thy purse. I am not who I am??????????????????????? PROSANA (._.)7/"
@@ -100,29 +108,22 @@ class App extends Component {
   }
   //functions
   answerOnClick(no){
-    console.log(`app has recieveed ${no}`)
     //this.iterateQuestion()
     let question = this.state.currentQ;
-    console.log("[][][][][][]")
-    console.log(question);
-
     if(question.answerIndex === no){
-      //if answer correct----------------------
+      //if answer correct-----------------------------------------------------------------------------
 
 
-      this.iterateQuestion()
+
+      this.iterateQuestion();
 
     }else{
       this.setState({userWrongAnswer:true})
+
     }
 
   }
   changeRenderText(){
-    //this.state.answerBoxText = this.state.QuestionList[this.state.currentIndex].question;
-    //this.state.answerBoxText = this.state.QuestionList[this.state.currentIndex].answerChoice;
-    // console.log("wwwwwwwwww")
-    // console.log(this.state.QuestionList)
-    // console.log(this.state.currentIndex)
     this.setState({questionText : this.state.QuestionList[this.state.currentIndex].question});
     this.setState({answerBoxText : this.state.QuestionList[this.state.currentIndex].answerChoice})
   }
@@ -132,18 +133,38 @@ class App extends Component {
     if (index >= this.state.QuestionList.length){
       index = 0;
     }
-    this.setState({currentIndex: index});
+    this.setState({currentIndex: index, userWrongAnswer: false, time: this.state.timeLength});
     this.setState({currentQ: this.state.QuestionList[this.state.currentIndex]})
-    console.log(index);
     this.changeRenderText();
   }
 
   render() {
-    console.log(this.state);
+    let doc = this;
     return (
       <div className="app"> 
-        <Top qNum={this.state.currentIndex} questionText={this.state.questionText}/>
-        <Mid answerOnClick={(no) => this.answerOnClick(no)}  textData={this.state.answerBoxText} isWrong={this.state.userWrongAnswer} correctAnswer={this.state.currentQ.getAnswer ? this.state.currentQ.getAnswer() : "doesnt exist"}/>
+        <Top qNum={this.state.currentIndex} questionText={this.state.questionText} time={this.state.time}/>
+
+        <Mid 
+          answerOnClick={(no) => this.answerOnClick(no)}  
+          textData={this.state.answerBoxText} 
+          userWrongAnswer={this.state.userWrongAnswer} 
+          iterateQuestion={() => this.iterateQuestion()}
+          correctAnswer={
+            (function(){
+              if (doc.state.currentQ){
+                if (doc.state.currentQ.getAnswer){
+                  return doc.state.currentQ.getAnswer() ? doc.state.currentQ.getAnswer() : "doesnt exist";
+                }else{
+                  return null;
+                }
+              }else{
+                return null;
+              }
+            }
+            )()
+          }
+        />
+
         <Bottom/>
       </div>
     );
@@ -160,10 +181,7 @@ class Question {
     this.answerIndex = typeof answerIndex === 'number' ? answerIndex : NaN;
   }    
   getAnswer(){
-    return this.answer ? this.answer : null;
-  }
-  checkAnswer(choice){
-    return this.answerChoice[this.answerIndex] || null;
+    return this.answerChoice[this.answerIndex] ? this.answerChoice[this.answerIndex] : null;
   }
   getQuestion(){
     return this.question ? this.question : null

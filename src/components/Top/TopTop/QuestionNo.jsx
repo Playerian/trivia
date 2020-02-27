@@ -6,8 +6,8 @@ class QuestionNo extends Component {
 
   render() {
     return (
-      <div className="QuestionNo">
-        {this.props.qNum || Infinity}
+      <div className="QuestionNo" title="Question number">
+        <div>{this.props.qNum || Infinity}</div>
       </div>
     );
   }

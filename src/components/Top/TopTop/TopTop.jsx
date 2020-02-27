@@ -11,7 +11,7 @@ class Top extends Component {
       <div className="TopTop">
         <QuestionNo qNum={this.props.qNum}/>
         <TopFiller/>
-        <Timer/>
+        <Timer time={this.props.time}/>
       </div>
     );
   }

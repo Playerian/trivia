@@ -8,12 +8,12 @@ class Mid extends Component {
   constructor(props){
     super(props);
   }
-ss
   responded(no){
-    console.log(`${no} has called!`);
     this.props.answerOnClick(no);
   }
-
+  nextQuestionRequest(){
+    this.props.iterateQuestion();
+  }
 
 
 
@@ -21,19 +21,19 @@ ss
   render() {
     let cmps =[];
     for (let i = 0;i<4;i++){
-      cmps.push(<Answer no={i} data={this.props.textData[i]} respond={(no) => this.responded(no)}/>);
+      cmps.push(<Answer cName={"answerButton" + i} no={i} data={this.props.textData[i]} respond={(no) => this.responded(no)}/>);
     }
 
-    if(this.props.WrongAnswer){ //either true or false  pass in correct answer......
+    if(this.props.userWrongAnswer){ //either true or false  pass in correct answer...... true means wrong answer
       return (
         <div className="Mid container">
-          <WrongAnswer actualAnswer={this.props.correctAnswer} />
+          <WrongAnswer actualAnswer={this.props.correctAnswer} nextClicked={() => this.nextQuestionRequest()}/>
         </div>
       )
     }else{
       return (
         <div className="Mid container">
-          {cmps};
+          {cmps}
         </div>
       )
     }
