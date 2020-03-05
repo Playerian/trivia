@@ -1,8 +1,8 @@
 {
-  "name": "studio2",
+  "name": "quiz app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://scriptedcurriculum.github.io/studio2",
+  "homepage": "https://playerian.github.io/trivia/",
   "dependencies": {
     "firebase": "^7.9.0",
     "lodash": "^4.17.11",
